@@ -1,9 +1,8 @@
-﻿using Chapter.Interface;
+﻿using Chapter.Interfaces;
 using Chapter.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ChapterBET6.Controllers
+namespace Chapter.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
@@ -26,7 +25,7 @@ namespace ChapterBET6.Controllers
         {
             try
             {
-                return Ok(_iusuarioRepository.Lista());
+                return Ok(_iusuarioRepository.Listar());
             }
             catch (Exception)
             {

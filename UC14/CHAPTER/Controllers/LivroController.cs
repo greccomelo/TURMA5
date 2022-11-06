@@ -12,9 +12,9 @@ namespace Chapter.Controllers
     {
         private readonly LivroRepository _livroRepository;
 
-        public LivroController(LivroRepository livroRepository)
+        public LivroController(LivroRepository livroRep)
         {
-            _livroRepository = livroRepository;
+            _livroRepository = livroRep;
         }
 
         [HttpGet]
@@ -23,47 +23,55 @@ namespace Chapter.Controllers
             try
             {
                 return Ok(_livroRepository.Listar());
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
         }
+
+
 
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
             try
             {
-                Livro Livrobuscado = _livroRepository.BuscarPorId(id);
+                Livro livroBuscado = _livroRepository.BuscarPorId(id);
 
-                if (Livrobuscado == null)
+                if (livroBuscado == null)
                 {
                     return NotFound();
                 }
-                return Ok(Livrobuscado);
+
+                return Ok(livroBuscado);
             }
             catch (Exception e)
             {
-
                 throw new Exception(e.Message);
             }
         }
 
+
+
+
         [HttpPost]
-        public IActionResult Cadastrar(Livro livro)
+        public IActionResult Cadastrar(Livro l)
         {
             try
             {
-                _livroRepository.Cadastrar(livro);
+                _livroRepository.Cadastrar(l);
 
                 return StatusCode(201);
+                //return Ok("Livro cadastrado com sucesso");
             }
             catch (Exception e)
             {
-
                 throw new Exception(e.Message);
             }
         }
+
+
 
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
@@ -72,30 +80,29 @@ namespace Chapter.Controllers
             {
                 _livroRepository.Deletar(id);
 
-                return Ok("Livro deletado com sucesso");
+                return Ok("Livro removido com sucesso");
             }
             catch (Exception e)
             {
-
                 throw new Exception(e.Message);
             }
         }
 
+
+
         [HttpPut("{id}")]
-        public IActionResult Atualizar(int id, Livro livro)
+        public IActionResult Alterar(int id, Livro l)
         {
             try
             {
-                _livroRepository.Atualizar(id, livro);
+                _livroRepository.Alterar(id, l);
 
                 return StatusCode(204);
             }
             catch (Exception e)
             {
-
                 throw new Exception(e.Message);
             }
         }
-
     }
 }
