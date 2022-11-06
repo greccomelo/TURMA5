@@ -1,15 +1,14 @@
 ﻿using Chapter.Models;
 
-namespace Chapter.Interface
+namespace Chapter.Interfaces
 {
     public interface IUsuarioRepository
     {
-        List<Usuario> Lista();
+        List<Usuario> Listar();
 
         Usuario BuscarPorId(int id);
 
         void Cadastrar(Usuario usuario);
-
         void Atualizar(int id, Usuario usuario);
 
         void Deletar(int id);
