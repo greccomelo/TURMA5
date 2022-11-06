@@ -1,5 +1,5 @@
 ﻿using Chapter.Contexts;
-using Chapter.Interface;
+using Chapter.Interfaces;
 using Chapter.Models;
 
 namespace Chapter.Repositories
@@ -7,7 +7,7 @@ namespace Chapter.Repositories
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly ChapterContext _context;
-        
+
         public UsuarioRepository(ChapterContext context)
         {
             _context = context;
@@ -47,7 +47,7 @@ namespace Chapter.Repositories
             _context.SaveChanges();
         }
 
-        public List<Usuario> Lista()
+        public List<Usuario> Listar()
         {
             return _context.Usuarios.ToList();
         }
